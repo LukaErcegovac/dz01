@@ -8,6 +8,7 @@
 <script>
 export default{
   name: 'About',
+  
 
   data: function(){
     return{
@@ -25,7 +26,8 @@ export default{
     let pod = await rez.json()
 
     console.log(pod)
-  }
 
+    this.pod.commit.author.name
+  }
 };
 </script>

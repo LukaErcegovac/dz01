@@ -19,11 +19,8 @@ export default {
   },
 
   methods:{
-    showabout(sha,ime,email,date){
+    showabout(sha){
       this.$router.push({ name: 'about', params: { sha: sha } })
-      this.$router.push({ name: 'about', params: { ime: name } })
-      this.$router.push({ name: 'about', params: { email: email } })
-      this.$router.push({ name: 'about', params: { date: date } })
     }
   },
 
