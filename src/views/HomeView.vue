@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <ul>
-      <li v-for="item in commit" v-bind:key="item.sha">
-        Commit<router-link :to ="'/about/' + item.sha">{{item.sha}}</router-link>
+      <li v-for="item in commit" :key="item.sha" @click="showabout(item.sha)">
+        {{item.sha}}
       </li>
     </ul>
   </div>
@@ -18,9 +18,17 @@ export default {
     }
   },
 
+  methods:{
+    showabout(sha,ime,email,date){
+      this.$router.push({ name: 'about', params: { sha: sha } })
+      this.$router.push({ name: 'about', params: { ime: name } })
+      this.$router.push({ name: 'about', params: { email: email } })
+      this.$router.push({ name: 'about', params: { date: date } })
+    }
+  },
+
   async mounted(){
     let rez = await fetch("https://api.github.com/repos/vuejs/vue/commits")
-
     let pod = await rez.json()
 
     for(let item of pod){
