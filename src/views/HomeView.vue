@@ -1,18 +1,33 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <ul>
+      <li v-for="item in commit" v-bind:key="item.sha">
+        Commit<router-link :to ="'/about/' + item.sha">{{item.sha}}</router-link>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
-  name: 'HomeView',
-  components: {
-    HelloWorld
-  }
-}
+  name: "HomeView",
+  
+  data: function() {
+    return {
+    commit: [],
+    }
+  },
+
+  async mounted(){
+    let rez = await fetch("https://api.github.com/repos/vuejs/vue/commits")
+
+    let pod = await rez.json()
+
+    for(let item of pod){
+      console.log(item.sha)
+    }
+
+    this.commit = pod;
+  }, 
+};
 </script>
